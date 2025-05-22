@@ -1,1 +1,704 @@
-# Mapified-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mapified - Complete Portfolio</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    color: #222;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+
+  a {
+    color: #1e90ff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  header {
+    background-color: #1e90ff;
+    color: white;
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(30,144,255,0.4);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  nav .logo {
+    font-size: 1.7rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    font-family: 'Arial Black', Arial, sans-serif;
+    user-select: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+
+  nav ul li {
+    margin-left: 1.8rem;
+  }
+  nav ul li a {
+    font-weight: 600;
+    transition: color 0.3s ease;
+    font-size: 1rem;
+  }
+  nav ul li a:hover,
+  nav ul li a.active {
+    color: #ffa500; /* orange accent */
+  }
+
+  /* Hero section */
+  .hero {
+    padding: 160px 2rem 4rem;
+    background: linear-gradient(135deg, #1e90ff 0%, #4682b4 100%);
+    color: white;
+    text-align: center;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 3px 9px rgba(0,0,0,0.3);
+  }
+  .hero p {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+  }
+  .hero .btn {
+    background-color: #ffa500;
+    color: #1e90ff;
+    padding: 0.8rem 2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(255,165,0,0.6);
+    max-width: 200px;
+    align-self: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .hero .btn:hover {
+    background-color: #cc8400;
+    color: white;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+    margin-bottom: 3rem;
+  }
+
+  section h2 {
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 2rem;
+    color: #1e90ff;
+    position: relative;
+  }
+  section h2::after {
+    content: '';
+    display: block;
+    margin: 0.7rem auto 0;
+    width: 80px;
+    height: 4px;
+    background-color: #ffa500;
+    border-radius: 3px;
+  }
+
+  /* About */
+  #about p {
+    max-width: 820px;
+    margin: 0 auto;
+    line-height: 1.75;
+    font-size: 1.1rem;
+    color: #444;
+  }
+
+  /* Features */
+  #features {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .feature {
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 9px 24px rgba(0,0,0,0.07);
+    flex: 1 1 280px;
+    text-align: center;
+    transition: transform 0.35s ease;
+    cursor: default;
+    background: #f9faff;
+  }
+  .feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 34px rgba(0,0,0,0.12);
+  }
+  .feature svg {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    fill: #1e90ff;
+  }
+  .feature h3 {
+    margin-bottom: 1rem;
+    color: #1e90ff;
+  }
+  .feature p {
+    color: #555;
+    font-size: 1rem;
+  }
+
+  /* Portfolio */
+  #portfolio .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .project {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.1);
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .project:hover {
+    box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+  }
+  .project img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .project:hover img {
+    transform: scale(1.1);
+  }
+  .project-info {
+    padding: 1.2rem 1rem;
+  }
+  .project-info h4 {
+    color: #1e90ff;
+    margin-bottom: 0.5rem;
+  }
+  .project-info p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  /* FAQ */
+  #faq .faq-item {
+    max-width: 720px;
+    margin: 1rem auto;
+    border-bottom: 1px solid #ddd;
+  }
+  #faq .question {
+    cursor: pointer;
+    padding: 1rem 1.25rem;
+    font-weight: 700;
+    color: #1e90ff;
+    position: relative;
+    background: #f9faff;
+    border-radius: 8px;
+  }
+  #faq .question::after {
+    content: "+";
+    position: absolute;
+    right: 1rem;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  #faq .question.active::after {
+    content: "−";
+    transform: rotate(180deg);
+  }
+  #faq .answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    padding: 0 1.25rem;
+    margin-bottom: 1rem;
+    color: #444;
+  }
+  #faq .answer.open {
+    max-height: 500px; /* enough for most answers */
+    padding-top: 0.5rem;
+  }
+
+  /* Data Upload */
+  #upload form {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  #upload label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1e90ff;
+    font-size: 1rem;
+  }
+  #upload input[type="file"] {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  #upload button {
+    background-color: #1e90ff;
+    color: white;
+    font-weight: 700;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(30,144,255,0.7);
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+  #upload button:hover {
+    background-color: #1266cc;
+  }
+  #upload .upload-message {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: green;
+  }
+
+  /* Contact */
+  #contact form {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  #contact label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1e90ff;
+    font-size: 1rem;
+  }
+  #contact input,
+  #contact textarea {
+    padding: 0.85rem 1.2rem;
+    margin-bottom: 1.4rem;
+    border: 2px solid #c4d1e6;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+    color: #222;
+  }
+  #contact input:focus,
+  #contact textarea:focus {
+    border-color: #ffa500;
+    outline: none;
+  }
+  #contact textarea {
+    resize: vertical;
+    min-height: 130px;
+  }
+  #contact button {
+    background-color: #1e90ff;
+    color: white;
+    font-weight: 700;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(30,144,255,0.6);
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+  #contact button:hover {
+    background-color: #1266cc;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #1e90ff;
+    color: white;
+    text-align: center;
+    padding: 1.75rem 2rem;
+    font-size: 0.95rem;
+    margin-top: 3rem;
+  }
+  footer a {
+    color: #ffa500;
+    font-weight: 600;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Mobile */
+  @media (max-width: 680px) {
+    nav ul {
+      flex-direction: column;
+      background-color: #1e90ff;
+      position: fixed;
+      top: 55px;
+      right: 0;
+      width: 220px;
+      display: none;
+      margin: 0;
+      padding: 1rem 0;
+      border-radius: 0 0 0 10px;
+      z-index: 1001;
+    }
+    nav ul.showing {
+      display: flex;
+    }
+    nav ul li {
+      margin: 0.9rem 0;
+    }
+    nav .menu-toggle {
+      display: block;
+      cursor: pointer;
+      color: white;
+      font-size: 1.9rem;
+      user-select: none;
+    }
+  }
+  @media (min-width: 681px) {
+    nav .menu-toggle {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Mapified</div>
+    <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu">&#9776;</div>
+    <ul id="nav-list" role="menubar">
+      <li><a href="#hero" class="nav-link" role="menuitem" aria-current="page">Home</a></li>
+      <li><a href="#about" class="nav-link" role="menuitem">About</a></li>
+      <li><a href="#features" class="nav-link" role="menuitem">Features</a></li>
+      <li><a href="#portfolio" class="nav-link" role="menuitem">Portfolio</a></li>
+      <li><a href="#faq" class="nav-link" role="menuitem">FAQ</a></li>
+      <li><a href="#upload" class="nav-link" role="menuitem">Data Upload</a></li>
+      <li><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="hero" aria-label="Welcome Section">
+  <h1>Welcome to Mapified</h1>
+  <p>Your ultimate solution for location-based insights and mapping technology.</p>
+  <button class="btn" onclick="scrollToSection('about')" aria-label="Explore more about Mapified">Explore More</button>
+</section>
+
+<section id="about" class="container" aria-label="About Mapified">
+  <h2>About Mapified</h2>
+  <p>
+    Mapified offers innovative mapping tools and geographic data visualizations that empower businesses
+    and developers worldwide. We simplify complex spatial data into actionable intelligence to drive your success.
+  </p>
+</section>
+
+<section id="features" class="container" aria-label="Features of Mapified">
+  <h2>Features</h2>
+  <div id="features">
+    <div class="feature" tabindex="0" aria-label="Interactive Maps Feature">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><path d="M28 2l25 9-7 36-18 7-25-9 7-35z" stroke="#1e90ff" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+      <h3>Interactive Maps</h3>
+      <p>Explore rich, customizable maps with zoom, layers, and real-time data updates.</p>
+    </div>
+    <div class="feature" tabindex="0" aria-label="Geospatial Analytics Feature">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#1e90ff" stroke-width="2" fill="none"/><path d="M12 6v6l4 2" stroke="#1e90ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Geospatial Analytics</h3>
+      <p>Gain deep insights from spatial datasets to optimize your operations.</p>
+    </div>
+    <div class="feature" tabindex="0" aria-label="API Access Feature">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" stroke="#1e90ff" stroke-width="2" fill="none"/><path d="M20 32h24" stroke="#1e90ff" stroke-width="2" stroke-linecap="round"/></svg>
+      <h3>API Access</h3>
+      <p>Integrate Mapified’s data effortlessly into your applications via our powerful API.</p>
+    </div>
+    <div class="feature" tabindex="0" aria-label="Custom Solutions Feature">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="16" width="32" height="32" stroke="#1e90ff" stroke-width="2" fill="none"/></svg>
+      <h3>Custom Solutions</h3>
+      <p>Tailored mapping services suited to your unique business needs and scale.</p>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="container" aria-label="Mapified Portfolio Projects">
+  <h2>Portfolio</h2>
+  <div class="projects-grid">
+    <div class="project" tabindex="0" aria-label="Logistics Route Optimization Project">
+      <img src="https://source.unsplash.com/400x300/?route,map,logistics" alt="Logistics route optimization map" />
+      <div class="project-info">
+        <h4>Logistics Route Optimization</h4>
+        <p>Dynamic routing visualization for city-wide delivery logistics efficiency.</p>
+      </div>
+    </div>
+    <div class="project" tabindex="0" aria-label="Real Estate Location Mapping Project">
+      <img src="https://source.unsplash.com/400x300/?realestate,map" alt="Real estate location heatmap" />
+      <div class="project-info">
+        <h4>Real Estate Insights</h4>
+        <p>Heatmap of market trends to inform property investments and sales strategies.</p>
+      </div>
+    </div>
+    <div class="project" tabindex="0" aria-label="Environmental Data Mapping Project">
+      <img src="https://source.unsplash.com/400x300/?environment,map" alt="Environmental data mapping visualization" />
+      <div class="project-info">
+        <h4>Environmental Monitoring</h4>
+        <p>Visualizations of environmental data to support sustainability initiatives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="container" aria-label="Frequently Asked Questions">
+  <h2>FAQ</h2>
+
+  <div class="faq-item">
+    <div class="question" tabindex="0" role="button" aria-expanded="false" aria-controls="faq1-answer" id="faq1-question">What is Mapified?</div>
+    <div class="answer" id="faq1-answer" aria-labelledby="faq1-question" hidden>
+      Mapified is a platform offering advanced mapping tools and geographic data visualizations for businesses and developers.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question" tabindex="0" role="button" aria-expanded="false" aria-controls="faq2-answer" id="faq2-question">Can I integrate Mapified with my app?</div>
+    <div class="answer" id="faq2-answer" aria-labelledby="faq2-question" hidden>
+      Yes! Mapified provides a powerful API to integrate our mapping and analytics data into your applications seamlessly.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question" tabindex="0" role="button" aria-expanded="false" aria-controls="faq3-answer" id="faq3-question">Is there a free trial available?</div>
+    <div class="answer" id="faq3-answer" aria-labelledby="faq3-question" hidden>
+      Currently, we offer demo access through this website. Please contact us for details about trials and pricing.
+    </div>
+  </div>
+</section>
+
+<section id="upload" class="container" aria-label="Data Upload Section">
+  <h2>Data Upload</h2>
+  <form id="upload-form" onsubmit="return handleUpload(event)" novalidate>
+    <label for="file-input">Upload Your Data File (CSV only)*</label>
+    <input type="file" id="file-input" name="file" accept=".csv" required aria-required="true" aria-describedby="file-desc" />
+    <small id="file-desc" style="color:#555; font-size:0.9rem; margin-bottom:1rem; display:block;">
+      Supported format: CSV. Max size: 5 MB.
+    </small>
+    <button type="submit" aria-label="Upload Data File">Upload</button>
+    <div class="upload-message" aria-live="polite" role="status"></div>
+  </form>
+</section>
+
+<section id="contact" class="container" aria-label="Contact Mapified">
+  <h2>Contact Us</h2>
+  <form id="contact-form" onsubmit="return validateContactForm()" novalidate>
+    <label for="name">Name*</label>
+    <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true" />
+
+    <label for="email">Email*</label>
+    <input type="email" id="email" name="email" placeholder="Your email address" required aria-required="true" />
+
+    <label for="message">Message*</label>
+    <textarea id="message" name="message" placeholder="Write your message here..." required aria-required="true"></textarea>
+
+    <button type="submit" aria-label="Send contact message">Send Message</button>
+  </form>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2024 Mapified. All rights reserved. | <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('mobile-menu');
+  const navList = document.getElementById('nav-list');
+
+  menuToggle.addEventListener('click', () => {
+    navList.classList.toggle('showing');
+  });
+
+  // Smooth scroll to section helper
+  function scrollToSection(id) {
+    const elem = document.getElementById(id);
+    if (elem) {
+      const headerOffset = 70;
+      const elementPosition = elem.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  // Highlight active nav link based on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let scrollY = window.pageYOffset;
+
+    sections.forEach(section => {
+      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.offsetTop - 80;
+      const sectionId = section.getAttribute('id');
+      const navLink = document.querySelector(`nav ul li a[href="#${sectionId}"]`);
+
+      if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLink.classList.add('active');
+        navLink.setAttribute('aria-current', 'page');
+      } else {
+        navLink.classList.remove('active');
+        navLink.removeAttribute('aria-current');
+      }
+    });
+  });
+
+  // Nav link click close mobile menu
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if(navList.classList.contains('showing')) {
+        navList.classList.remove('showing');
+      }
+    });
+  });
+
+  // FAQ toggles
+  const faqQuestions = document.querySelectorAll('#faq .question');
+  faqQuestions.forEach(q => {
+    q.addEventListener('click', () => toggleFaq(q));
+    q.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleFaq(q);
+      }
+    });
+  });
+  function toggleFaq(question) {
+    const answer = question.nextElementSibling;
+    const expanded = question.getAttribute('aria-expanded') === 'true';
+    if(expanded) {
+      question.setAttribute('aria-expanded', 'false');
+      answer.hidden = true;
+      answer.classList.remove('open');
+      question.classList.remove('active');
+    } else {
+      question.setAttribute('aria-expanded', 'true');
+      answer.hidden = false;
+      answer.classList.add('open');
+      question.classList.add('active');
+    }
+  }
+
+  // Data Upload Form Handler
+  function handleUpload(event) {
+    event.preventDefault();
+    const fileInput = document.getElementById('file-input');
+    const messageDiv = document.querySelector('#upload .upload-message');
+    messageDiv.textContent = '';
+    const files = fileInput.files;
+
+    if(files.length === 0) {
+      alert('Please select a file to upload.');
+      fileInput.focus();
+      return false;
+    }
+    const file = files[0];
+
+    // Simple validations: type and size max 5MB
+    if(file.type !== 'text/csv' && file.name.split('.').pop().toLowerCase() !== 'csv') {
+      alert('Please upload a valid CSV file.');
+      fileInput.focus();
+      return false;
+    }
+    if(file.size > 5 * 1024 * 1024) {
+      alert('File size must be less than 5 MB.');
+      fileInput.focus();
+      return false;
+    }
+
+    // Simulate successful upload with a timeout
+    messageDiv.style.color = 'green';
+    messageDiv.textContent = 'Uploading...';
+    setTimeout(() => {
+      messageDiv.textContent = `Upload successful! "${file.name}" received. (Demo only, no server upload.)`;
+      event.target.reset();
+    }, 1500);
+    return false;
+  }
+
+  // Contact form validation
+  function validateContactForm() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (name.length < 3) {
+      alert('Please enter a valid name (at least 3 characters).');
+      document.getElementById('name').focus();
+      return false;
+    }
+    if (!validateEmail(email)) {
+      alert('Please enter a valid email address.');
+      document.getElementById('email').focus();
+      return false;
+    }
+    if (message.length < 10) {
+      alert('Please enter a message (at least 10 characters).');
+      document.getElementById('message').focus();
+      return false;
+    }
+
+    alert('Thank you for contacting Mapified, ' + name + '! This is a demo form; no message will be sent.');
+    document.getElementById('contact-form').reset();
+    return false; // prevent form submission for demo
+  }
+
+  function validateEmail(email) {
+    const re = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    return re.test(email);
+  }
+</script>
+
+</body>
+</html>
+
